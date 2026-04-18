@@ -1,0 +1,2 @@
+# Color-Smack-
+Claude Hackathon 
