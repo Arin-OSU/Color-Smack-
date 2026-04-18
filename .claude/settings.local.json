@@ -17,7 +17,10 @@
       "Bash(pnpm add *)",
       "Bash(pnpm dlx *)",
       "Bash(pnpm exec *)",
-      "Bash(python -m py_compile scripts/scrape.py scripts/load_fallback.py)"
+      "Bash(python -m py_compile scripts/scrape.py scripts/load_fallback.py)",
+      "Bash(python -m py_compile scripts/calendar_osu.py scripts/features.py)",
+      "Bash(python -m py_compile scripts/train_all.py scripts/check_training.py)",
+      "Bash(python -m py_compile scripts/score.py scripts/cluster_anomalies.py scripts/replay.py)"
     ]
   }
 }
