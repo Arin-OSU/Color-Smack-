@@ -1,0 +1,33 @@
+# Data and artifacts
+data/
+models/
+meta/
+cache/
+logs/
+
+# Node
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Env
+.env.local
+.env*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Misc
+*.log

@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm --version)",
+      "Bash(py --version)",
+      "Bash(npm *)",
+      "Bash(git init *)",
+      "Bash(pnpm create *)",
+      "Read(//c/tmp/**)",
+      "Bash(rm -rf cs_scaffold)",
+      "Read(//tmp/**)",
+      "Read(//tmp/cs_scaffold/**)",
+      "Bash(cp /tmp/cs_scaffold/package.json /tmp/cs_scaffold/tsconfig.json /tmp/cs_scaffold/next.config.ts /tmp/cs_scaffold/postcss.config.mjs /tmp/cs_scaffold/eslint.config.mjs /tmp/cs_scaffold/next-env.d.ts /tmp/cs_scaffold/pnpm-lock.yaml /tmp/cs_scaffold/pnpm-workspace.yaml .)",
+      "Bash(cp /tmp/cs_scaffold/app/* ./app/)",
+      "Bash(cp -r /tmp/cs_scaffold/public/* ./public/)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm add *)",
+      "Bash(pnpm dlx *)"
+    ]
+  }
+}
