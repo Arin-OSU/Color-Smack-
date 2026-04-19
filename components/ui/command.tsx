@@ -1,16 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { createPortal } from "react-dom"
 import { Command as CommandPrimitive } from "cmdk"
 
 import { cn } from "@/lib/utils"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
 import { SearchIcon, CheckIcon } from "lucide-react"
 
 function Command({
@@ -30,35 +24,46 @@ function Command({
 }
 
 function CommandDialog({
-  title = "Command Palette",
-  description = "Search for a command to run...",
+  open,
+  onOpenChange,
   children,
   className,
-  showCloseButton = false,
-  ...props
-}: Omit<React.ComponentProps<typeof Dialog>, "children"> & {
-  title?: string
-  description?: string
-  className?: string
-  showCloseButton?: boolean
+}: {
+  open: boolean
+  onOpenChange: (open: boolean) => void
   children: React.ReactNode
+  className?: string
 }) {
-  return (
-    <Dialog {...props}>
-      <DialogContent
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
+
+  React.useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onOpenChange(false)
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [open, onOpenChange])
+
+  if (!mounted || !open) return null
+
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh]">
+      <div
+        className="fixed inset-0 bg-black/40"
+        onClick={() => onOpenChange(false)}
+      />
+      <div
         className={cn(
-          "top-1/3 translate-y-0 overflow-hidden rounded-xl! p-0",
+          "relative z-10 w-full max-w-lg overflow-hidden rounded-xl bg-popover shadow-2xl ring-1 ring-foreground/10",
           className
         )}
-        showCloseButton={showCloseButton}
       >
-        <DialogHeader className="sr-only">
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
-        </DialogHeader>
         <Command>{children}</Command>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </div>,
+    document.body
   )
 }
 
