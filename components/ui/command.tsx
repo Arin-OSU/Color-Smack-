@@ -49,18 +49,20 @@ function CommandDialog({
   if (!mounted || !open) return null
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh]">
+    <div className="fixed inset-0 z-50">
       <div
-        className="fixed inset-0 bg-black/40"
+        className="absolute inset-0 bg-black/40"
         onClick={() => onOpenChange(false)}
       />
-      <div
-        className={cn(
-          "relative z-10 w-full max-w-lg overflow-hidden rounded-xl bg-popover shadow-2xl ring-1 ring-foreground/10",
-          className
-        )}
-      >
-        <Command>{children}</Command>
+      <div className="relative z-10 flex items-start justify-center pt-[18vh] pointer-events-none">
+        <div
+          className={cn(
+            "pointer-events-auto w-full max-w-lg overflow-hidden rounded-xl shadow-2xl border border-border bg-bg-elev-2",
+            className
+          )}
+        >
+          <Command>{children}</Command>
+        </div>
       </div>
     </div>,
     document.body
