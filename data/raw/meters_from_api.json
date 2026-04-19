@@ -1,0 +1,4082 @@
+[
+  {
+    "building_id": 1,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 4,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 5,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 7,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 11,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 17,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 18,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 24,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 25,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 26,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 38,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 41,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 46,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 50,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 53,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 55,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 65,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 67,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 69,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 70,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 72,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 77,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 80,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 87,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 89,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 95,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 99,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 127,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 136,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 144,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 146,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 147,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 148,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 150,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 160,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 165,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 180,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 187,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 245,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 246,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 248,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 249,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 250,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 251,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 252,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 253,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 254,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 265,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 266,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 273,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 274,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 276,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 280,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 282,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 293,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 294,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 299,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 337,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 338,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 339,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 353,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 354,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 371,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 372,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 375,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 376,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 386,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 388,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 851,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 852,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 870,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1018,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1025,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1040,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1043,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1044,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1064,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1101,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1102,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1103,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1104,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1105,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1106,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1107,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1108,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1109,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1110,
+    "utility": "chilled_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 279,
+    "utility": "cooling_power",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 3,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 4,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 5,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 7,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 8,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 9,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 10,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 11,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 12,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 14,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 17,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 18,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 22,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 24,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 25,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 26,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 28,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 29,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 30,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 37,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 38,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 39,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 40,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 41,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 42,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 43,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 46,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 47,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 48,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 49,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 50,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 52,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 53,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 54,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 55,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 56,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 59,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 60,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 61,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 63,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 64,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 65,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 66,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 67,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 69,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 70,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 72,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 73,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 76,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 78,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 79,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 80,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 81,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 82,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 83,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 84,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 85,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 86,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 87,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 88,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 89,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 90,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 91,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 92,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 93,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 95,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 97,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 98,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 99,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 100,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 102,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 103,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 105,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 106,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 112,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 113,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 127,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 128,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 130,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 131,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 132,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 133,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 134,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 136,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 144,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 146,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 147,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 148,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 149,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 150,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 153,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 154,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 155,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 156,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 157,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 158,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 159,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 160,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 161,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 162,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 163,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 165,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 170,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 171,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 174,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 176,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 178,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 179,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 180,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 182,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 184,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 185,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 186,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 187,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 189,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 190,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 191,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 193,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 194,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 200,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 211,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 217,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 218,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 222,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 226,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 227,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 228,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 229,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 230,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 231,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 232,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 245,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 246,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 248,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 249,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 250,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 251,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 252,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 253,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 254,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 260,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 261,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 263,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 264,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 265,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 266,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 267,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 268,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 270,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 271,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 272,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 273,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 274,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 275,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 276,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 277,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 278,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 279,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 280,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 281,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 282,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 284,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 287,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 288,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 290,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 293,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 294,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 295,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 297,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 298,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 299,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 302,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 303,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 304,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 306,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 307,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 308,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 309,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 310,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 311,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 337,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 338,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 339,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 340,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 347,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 348,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 350,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 352,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 353,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 354,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 355,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 356,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 357,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 358,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 359,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 360,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 362,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 363,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 371,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 372,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 373,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 375,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 376,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 377,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 379,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 381,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 382,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 384,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 385,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 386,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 387,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 388,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 390,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 394,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 800,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 846,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 847,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 848,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 849,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 850,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 851,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 852,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 864,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 866,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 869,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 870,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 875,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 878,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 880,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 881,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 882,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 892,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 902,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 921,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 931,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 932,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 951,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 958,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 959,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 964,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 977,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 983,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 987,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 992,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 995,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1004,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1006,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1010,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1011,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1018,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1025,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1028,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1029,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1033,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1037,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1041,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1043,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1044,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1054,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1056,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1059,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1064,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1069,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1101,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1102,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1103,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1104,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1105,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1106,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1107,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1108,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1109,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1110,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1316,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1320,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1583,
+    "utility": "electricity",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 3,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 4,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 5,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 7,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 10,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 11,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 14,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 17,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 18,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 24,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 25,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 26,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 28,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 30,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 37,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 38,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 39,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 40,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 42,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 46,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 49,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 50,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 53,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 54,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 55,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 59,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 60,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 61,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 63,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 65,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 67,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 69,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 70,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 72,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 76,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 77,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 78,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 81,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 82,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 84,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 86,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 87,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 88,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 90,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 95,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 97,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 98,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 99,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 100,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 102,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 103,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 105,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 106,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 131,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 144,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 146,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 147,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 148,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 149,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 150,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 160,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 161,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 163,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 176,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 182,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 184,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 185,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 186,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 187,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 194,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 229,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 245,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 246,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 247,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 249,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 250,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 251,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 252,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 253,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 254,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 261,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 265,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 266,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 271,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 272,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 273,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 274,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 275,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 276,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 279,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 280,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 281,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 293,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 294,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 295,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 297,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 298,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 299,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 302,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 308,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 309,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 337,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 339,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 340,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 354,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 355,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 356,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 363,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 371,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 372,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 375,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 376,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 386,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 388,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 390,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 851,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 852,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1018,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1025,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1040,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1043,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1044,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1064,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1101,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1102,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1103,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1104,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1105,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1106,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1107,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1108,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1109,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1110,
+    "utility": "heating_hot_water",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 9,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 10,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 14,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 17,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 18,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 22,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 24,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 28,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 29,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 37,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 41,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 47,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 48,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 50,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 52,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 53,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 54,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 56,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 60,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 61,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 64,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 65,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 66,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 69,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 70,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 73,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 80,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 81,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 84,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 88,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 89,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 91,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 105,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 112,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 113,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 128,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 130,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 131,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 136,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 144,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 146,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 147,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 148,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 149,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 150,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 153,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 154,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 155,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 156,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 157,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 158,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 160,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 161,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 163,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 170,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 171,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 178,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 179,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 180,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 189,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 193,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 213,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 217,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 222,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 226,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 227,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 232,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 246,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 248,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 253,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 254,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 260,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 263,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 267,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 268,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 270,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 272,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 273,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 274,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 275,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 276,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 277,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 284,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 290,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 293,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 297,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 298,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 299,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 302,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 303,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 304,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 306,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 307,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 308,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 309,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 310,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 311,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 340,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 347,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 348,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 350,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 354,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 357,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 358,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 360,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 362,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 371,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 372,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 373,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 374,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 375,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 381,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 384,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 385,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 394,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 800,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 846,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 850,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 864,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 867,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 868,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 869,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 878,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 882,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 902,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 921,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 931,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 932,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 951,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 964,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 965,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 977,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 983,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 987,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 995,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1004,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1006,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1029,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1033,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1037,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1069,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1101,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1102,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1103,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1106,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1108,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1110,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1320,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1583,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1926,
+    "utility": "natural_gas",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 69,
+    "utility": "oil28sec",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 12,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 41,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 53,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 64,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 66,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 69,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 80,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 85,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 88,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 89,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 103,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 136,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 156,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 157,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 165,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 180,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 190,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 248,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 249,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 276,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 277,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 282,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 297,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 338,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 353,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 371,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 870,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1018,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 1044,
+    "utility": "steam",
+    "unit": "kWh",
+    "status": "active"
+  },
+  {
+    "building_id": 277,
+    "utility": "steam_rate",
+    "unit": "kWh",
+    "status": "active"
+  }
+]

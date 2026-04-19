@@ -1,0 +1,14 @@
+{
+  "finished_at": "2026-04-19T02:21:58.029422+00:00",
+  "buildings": 1287,
+  "meters": 680,
+  "readings": 993720,
+  "bytes_on_disk": 13599835,
+  "date_range": {
+    "start": "2025-05-01",
+    "end": "2026-04-17"
+  },
+  "errors": {},
+  "status": "FALLBACK_REQUIRED",
+  "reason": "wsdl_load_failed: http://energydashboard.osu.edu/dashboard.asmx?WSDL: 404 Client Error: The requested content does not exist. for url: https://energydashboard.osu.edu/dashboard.asmx?WSDL ; https://energydashboard.osu.edu/dashboard.asmx?WSDL: 404 Client Error: The requested content does not exist. for url: https://energydashboard.osu.edu/dashboard.asmx?WSDL ; Public site is reachable but SOAP WSDL is not exposed. Frontend currently uses Azure APIM endpoints under connfusion.azure-api.net with subscription-key auth."
+}
