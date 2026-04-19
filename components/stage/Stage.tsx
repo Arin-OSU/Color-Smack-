@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { useBus } from "@/lib/directive-bus";
 import { MapView } from "./MapView";
 import { stripEmDashes } from "@/lib/text";
@@ -11,6 +12,18 @@ import {
   humanizeDuration,
   humanizeRange,
 } from "@/lib/text";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ReferenceLine,
+  ReferenceArea,
+  Legend,
+} from "recharts";
 
 export function Stage() {
   const latest = useBus((s) => s.latestCenter);
@@ -79,12 +92,159 @@ function AnomalyDetailPlaceholder({ data }: { data: Record<string, unknown> }) {
               </p>
             </div>
           )}
-          <div className="rounded-md bg-bg-elev-1 border border-dashed border-border p-8 text-center text-xs text-fg-subtle">
-            Chart view lands with Recharts wiring. Expected vs actual overlay +
-            severity ReferenceArea.
-          </div>
+          <AnomalyChart anomaly={a} />
         </div>
       </div>
+    </div>
+  );
+}
+
+type TsRow = { t: string; actual: number; predicted: number; percentile: number };
+
+const SEV_COLOR = { high: "#e05a2b", medium: "#d97706", low: "#ca8a04" };
+
+function AnomalyChart({ anomaly }: { anomaly: Anomaly }) {
+  const [rows, setRows] = useState<TsRow[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`/api/timeseries?building_id=${anomaly.building_id}&utility=${encodeURIComponent(anomaly.utility)}`)
+      .then((r) => r.ok ? r.json() : [])
+      .then((data: TsRow[]) => { setRows(data); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, [anomaly.building_id, anomaly.utility]);
+
+  if (loading) {
+    return (
+      <div className="rounded-md bg-bg-elev-1 border border-border h-48 flex items-center justify-center text-xs text-fg-subtle">
+        Loading chart…
+      </div>
+    );
+  }
+  if (rows.length === 0) {
+    return (
+      <div className="rounded-md bg-bg-elev-1 border border-border h-48 flex items-center justify-center text-xs text-fg-subtle">
+        No time-series data available
+      </div>
+    );
+  }
+
+  const anomalyStart = anomaly.first_reading_time;
+  const anomalyEnd = anomaly.last_reading_time;
+  const sevColor = SEV_COLOR[anomaly.severity] ?? SEV_COLOR.low;
+
+  // Focus window: ±5 days around the anomaly
+  const focusCenter = new Date(anomalyStart).getTime();
+  const windowMs = 5 * 24 * 60 * 60 * 1000;
+  const windowStart = new Date(focusCenter - windowMs).toISOString();
+  const windowEnd = new Date(focusCenter + windowMs).toISOString();
+  const windowed = rows.filter((r) => r.t >= windowStart && r.t <= windowEnd);
+  const source = windowed.length >= 4 ? windowed : rows;
+
+  // Downsample to ≤200 pts
+  const step = Math.max(1, Math.floor(source.length / 200));
+  const pts = source.filter((_, i) => i % step === 0).map((r) => ({
+    ...r,
+    label: new Date(r.t).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }),
+  }));
+
+  const xIdxStart = pts.findIndex((p) => p.t >= anomalyStart);
+  const xIdxEnd = pts.findLastIndex((p) => p.t <= anomalyEnd);
+  const x1 = xIdxStart >= 0 ? pts[xIdxStart].label : undefined;
+  const x2 = xIdxEnd >= 0 ? pts[Math.max(xIdxStart, xIdxEnd)].label : x1;
+
+  return (
+    <div className="rounded-md bg-bg-elev-1 border border-border p-4">
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-[10px] uppercase tracking-wider text-fg-subtle">
+          Expected vs Actual · {anomaly.utility.replace(/_/g, " ")}
+        </span>
+        <span className="text-[10px] text-fg-subtle">
+          {new Date(windowStart).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+          {" – "}
+          {new Date(windowEnd).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+          {" · "}{pts.length} pts
+        </span>
+      </div>
+      <ResponsiveContainer width="100%" height={220}>
+        <AreaChart data={pts} margin={{ top: 4, right: 8, bottom: 0, left: 0 }}>
+          <defs>
+            <linearGradient id="gradActual" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor={sevColor} stopOpacity={0.25} />
+              <stop offset="95%" stopColor={sevColor} stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="gradPredicted" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#6b7280" stopOpacity={0.15} />
+              <stop offset="95%" stopColor="#6b7280" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
+          <XAxis
+            dataKey="label"
+            tick={{ fontSize: 10, fill: "var(--color-fg-subtle)" }}
+            tickLine={false}
+            axisLine={false}
+            interval={Math.floor(pts.length / 6)}
+          />
+          <YAxis
+            tick={{ fontSize: 10, fill: "var(--color-fg-subtle)" }}
+            tickLine={false}
+            axisLine={false}
+            width={48}
+            tickFormatter={(v) => v >= 1000 ? `${(v / 1000).toFixed(1)}k` : String(Math.round(v))}
+          />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "var(--color-bg-elev-2)",
+              border: "1px solid var(--color-border)",
+              borderRadius: 6,
+              fontSize: 11,
+              color: "var(--color-fg)",
+            }}
+            formatter={(value, name) => [
+              `${Number(value).toFixed(1)} kWh`,
+              name === "actual" ? "Actual" : "Expected",
+            ]}
+            labelStyle={{ color: "var(--color-fg-muted)", marginBottom: 4 }}
+          />
+          <Legend
+            wrapperStyle={{ fontSize: 11, paddingTop: 8 }}
+            formatter={(value) => value === "actual" ? "Actual" : "Expected"}
+          />
+          {x1 && x2 && (
+            <ReferenceArea
+              x1={x1}
+              x2={x2}
+              fill={sevColor}
+              fillOpacity={0.15}
+              stroke={sevColor}
+              strokeOpacity={0.4}
+              strokeDasharray="4 2"
+              label={{ value: anomaly.severity.toUpperCase(), position: "insideTop", fontSize: 10, fill: sevColor }}
+            />
+          )}
+          <Area
+            type="monotone"
+            dataKey="predicted"
+            stroke="#6b7280"
+            strokeWidth={1.5}
+            strokeDasharray="4 2"
+            fill="url(#gradPredicted)"
+            dot={false}
+            activeDot={{ r: 3 }}
+          />
+          <Area
+            type="monotone"
+            dataKey="actual"
+            stroke={sevColor}
+            strokeWidth={2}
+            fill="url(#gradActual)"
+            dot={false}
+            activeDot={{ r: 4 }}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
     </div>
   );
 }

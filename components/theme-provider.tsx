@@ -11,7 +11,7 @@ export function ThemeProvider({
       attribute="class"
       defaultTheme="dark"
       enableSystem={false}
-      forcedTheme="dark"
+      themes={["dark", "light"]}
       disableTransitionOnChange
       {...props}
     >

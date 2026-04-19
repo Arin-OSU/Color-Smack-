@@ -17,15 +17,15 @@ export function ResponsePanel() {
 
   if (turns.length === 0) {
     return (
-      <aside className="w-[380px] shrink-0 bg-bg border-l border-border flex flex-col">
+      <aside className="w-[380px] shrink-0 bg-bg border-l border-border flex flex-col overflow-hidden">
         <EmptyState />
       </aside>
     );
   }
 
   return (
-    <aside className="w-[380px] shrink-0 bg-bg border-l border-border flex flex-col">
-      <ScrollArea className="flex-1">
+    <aside className="w-[380px] shrink-0 bg-bg border-l border-border flex flex-col overflow-hidden">
+      <div className="flex-1 overflow-y-auto min-h-0">
         <div className="flex flex-col gap-5 px-4 py-5">
           {turns.map((t, i) => (
             <div key={t.turn_id} className="flex flex-col gap-3">
@@ -44,7 +44,7 @@ export function ResponsePanel() {
           ))}
           <div ref={bottomRef} />
         </div>
-      </ScrollArea>
+      </div>
     </aside>
   );
 }

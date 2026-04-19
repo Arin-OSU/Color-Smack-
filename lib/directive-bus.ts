@@ -1,5 +1,5 @@
 "use client";
-import { create } from "zustand";
+import { create } from "zustand/react";
 import type {
   Anomaly,
   CenterDirective,
@@ -7,6 +7,7 @@ import type {
   ChatMessage,
   Directive,
 } from "@/lib/types";
+import type { ExternalBuilding, ExternalAnomaly } from "@/lib/ingest";
 import { HERO_ANOMALIES } from "@/lib/fixtures/hero-anomalies";
 
 // Lightweight global event stream for chat + directives.
@@ -23,6 +24,9 @@ type TurnGroup = {
 interface BusState {
   anomalies: Anomaly[];
   setAnomalies: (a: Anomaly[]) => void;
+  externalBuildings: ExternalBuilding[];
+  externalAnomalies: ExternalAnomaly[];
+  setExternalData: (buildings: ExternalBuilding[], anomalies: ExternalAnomaly[]) => void;
   latestCenter: CenterDirective | null;
   turns: TurnGroup[];
   setCenter: (d: CenterDirective | null) => void;
@@ -37,6 +41,9 @@ interface BusState {
 export const useBus = create<BusState>((set, get) => ({
   anomalies: HERO_ANOMALIES,
   setAnomalies: (a) => set({ anomalies: a }),
+  externalBuildings: [],
+  externalAnomalies: [],
+  setExternalData: (buildings, anomalies) => set({ externalBuildings: buildings, externalAnomalies: anomalies }),
   latestCenter: null,
   turns: [],
   setCenter: (d) => set({ latestCenter: d }),

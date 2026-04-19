@@ -8,7 +8,8 @@ import type { Anomaly } from "@/lib/types";
 import { useMemo } from "react";
 
 export function LeftRail() {
-  const { latestCenter, dispatch } = useBus();
+  const latestCenter = useBus((s) => s.latestCenter);
+  const dispatch = useBus((s) => s.dispatch);
   const anomalies = useBus((s) => s.anomalies) as Anomaly[];
   const activeId =
     (latestCenter?.view_type === "anomaly_detail" &&

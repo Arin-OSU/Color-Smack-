@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import {
   CommandDialog,
   CommandInput,
@@ -7,9 +8,22 @@ import {
   CommandGroup,
   CommandItem,
 } from "@/components/ui/command";
-import { HERO_ANOMALIES } from "@/lib/fixtures/hero-anomalies";
 import { useBus } from "@/lib/directive-bus";
-import { Building2, AlertTriangle } from "lucide-react";
+import { Building2, AlertTriangle, Map } from "lucide-react";
+
+type Building = {
+  buildingnumber: number;
+  buildingname: string;
+  latitude: number;
+  longitude: number;
+  campus?: string;
+};
+
+const SEV_COLOR: Record<string, string> = {
+  high: "text-[#e05a2b]",
+  medium: "text-[#d97706]",
+  low: "text-[#ca8a04]",
+};
 
 export function CommandPalette({
   open,
@@ -19,38 +33,91 @@ export function CommandPalette({
   onOpenChange: (o: boolean) => void;
 }) {
   const dispatch = useBus((s) => s.dispatch);
+  const anomalies = useBus((s) => s.anomalies);
+  const externalAnomalies = useBus((s) => s.externalAnomalies);
+  const [buildings, setBuildings] = useState<Building[]>([]);
+
+  useEffect(() => {
+    if (!open) return;
+    fetch("/api/buildings")
+      .then((r) => r.ok ? r.json() : [])
+      .then((data: Building[]) => setBuildings(data.slice(0, 200)))
+      .catch(() => {});
+  }, [open]);
 
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
-      <CommandInput placeholder="Search buildings or anomalies" />
+      <CommandInput placeholder="Search buildings or anomalies…" />
       <CommandList>
-        <CommandEmpty>Nothing here yet. Scrape lands soon.</CommandEmpty>
-        <CommandGroup heading="Anomalies">
-          {HERO_ANOMALIES.map((a) => (
-            <CommandItem
-              key={a.id}
-              value={`${a.building_name} ${a.id}`}
-              onSelect={() => {
-                dispatch({
-                  target: "center",
-                  view_type: "anomaly_detail",
-                  data: { anomaly_id: a.id },
-                  config: { title: a.building_name ?? a.id },
-                });
-                onOpenChange(false);
-              }}
-            >
-              <AlertTriangle size={14} className="text-fg-muted" />
-              <span>{a.building_name}</span>
-              <span className="ml-auto text-xs text-fg-subtle">
-                {a.severity}
-              </span>
-            </CommandItem>
-          ))}
-        </CommandGroup>
+        <CommandEmpty>No results found.</CommandEmpty>
+
+        {anomalies.length > 0 && (
+          <CommandGroup heading="OSU Anomalies">
+            {anomalies.map((a) => (
+              <CommandItem
+                key={a.id}
+                value={`${a.building_name} ${a.utility} ${a.severity} anomaly`}
+                onSelect={() => {
+                  dispatch({
+                    target: "center",
+                    view_type: "anomaly_detail",
+                    data: { anomaly_id: a.id },
+                    config: { title: a.building_name ?? a.id },
+                  });
+                  onOpenChange(false);
+                }}
+              >
+                <AlertTriangle size={14} className={SEV_COLOR[a.severity] ?? "text-fg-muted"} />
+                <span className="flex-1 truncate">{a.building_name}</span>
+                <span className="text-xs text-fg-subtle mr-2">{a.utility.replace(/_/g, " ")}</span>
+                <span className={`text-xs font-medium ${SEV_COLOR[a.severity]}`}>{a.severity}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        )}
+
+        {externalAnomalies.length > 0 && (
+          <CommandGroup heading="External Anomalies">
+            {externalAnomalies.map((a) => (
+              <CommandItem
+                key={a.id}
+                value={`${a.building_name} ${a.utility} ${a.severity} external anomaly`}
+                onSelect={() => {
+                  onOpenChange(false);
+                }}
+              >
+                <AlertTriangle size={14} className={SEV_COLOR[a.severity] ?? "text-fg-muted"} />
+                <span className="flex-1 truncate">{a.building_name}</span>
+                <span className="text-xs text-fg-subtle mr-2">{a.utility.replace(/_/g, " ")}</span>
+                <span className={`text-xs font-medium ${SEV_COLOR[a.severity]}`}>{a.severity}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        )}
+
+        {buildings.length > 0 && (
+          <CommandGroup heading="Buildings">
+            {buildings.map((b) => (
+              <CommandItem
+                key={b.buildingnumber}
+                value={`${b.buildingname} ${b.campus ?? ""} building`}
+                onSelect={() => {
+                  onOpenChange(false);
+                }}
+              >
+                <Building2 size={14} className="text-fg-muted shrink-0" />
+                <span className="flex-1 truncate">{b.buildingname}</span>
+                {b.campus && (
+                  <span className="text-xs text-fg-subtle">{b.campus}</span>
+                )}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        )}
+
         <CommandGroup heading="Views">
           <CommandItem
-            value="campus map overview"
+            value="campus map overview osu"
             onSelect={() => {
               dispatch({
                 target: "center",
@@ -61,7 +128,7 @@ export function CommandPalette({
               onOpenChange(false);
             }}
           >
-            <Building2 size={14} className="text-fg-muted" />
+            <Map size={14} className="text-fg-muted" />
             <span>Campus map</span>
           </CommandItem>
         </CommandGroup>

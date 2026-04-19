@@ -2,9 +2,12 @@ export type Utility =
   | "electricity"
   | "natural_gas"
   | "steam"
+  | "steam_rate"
   | "heating_hot_water"
   | "chilled_water"
-  | "domestic_water";
+  | "domestic_water"
+  | "cooling_power"
+  | "oil28sec";
 
 export type Severity = "low" | "medium" | "high";
 export type AnomalyStatus =

@@ -10,26 +10,34 @@ import {
   stripEmDashes,
 } from "@/lib/text";
 import { cn } from "@/lib/utils";
-import { Zap, Flame, Droplets } from "lucide-react";
+import { Zap, Flame, Droplets, Wind } from "lucide-react";
 
 const UTILITY_ICON: Record<Utility, React.ComponentType<{ size?: number }>> = {
   electricity: Zap,
   natural_gas: Flame,
   steam: Flame,
+  steam_rate: Flame,
   heating_hot_water: Flame,
   chilled_water: Droplets,
   domestic_water: Droplets,
+  cooling_power: Wind,
+  oil28sec: Flame,
 };
 
 function utilityLabel(u: Utility): string {
-  return {
-    electricity: "electricity",
-    natural_gas: "natural gas",
-    steam: "steam",
-    heating_hot_water: "hot water",
-    chilled_water: "chilled water",
-    domestic_water: "water",
-  }[u];
+  return (
+    ({
+      electricity: "electricity",
+      natural_gas: "natural gas",
+      steam: "steam",
+      steam_rate: "steam rate",
+      heating_hot_water: "hot water",
+      chilled_water: "chilled water",
+      domestic_water: "water",
+      cooling_power: "cooling",
+      oil28sec: "oil",
+    } as Record<Utility, string>)[u] ?? u
+  );
 }
 
 export function AnomalyCard({

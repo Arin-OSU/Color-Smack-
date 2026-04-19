@@ -1,13 +1,18 @@
 "use client";
-import { Search, MoreVertical } from "lucide-react";
+import { useState } from "react";
+import { Search, MoreVertical, Sun, Moon, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFrozenClock } from "@/hooks/useFrozenClock";
 import { isFrozenMode } from "@/lib/clock";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+import { DataSourceDialog } from "@/components/shell/DataSourceDialog";
 
 export function TopBar({ onOpenCommand }: { onOpenCommand: () => void }) {
   const now = useFrozenClock();
   const frozen = isFrozenMode();
+  const { theme, setTheme } = useTheme();
+  const [dataDialogOpen, setDataDialogOpen] = useState(false);
 
   const timeLabel = now
     ? now.toLocaleString("en-US", {
@@ -21,6 +26,8 @@ export function TopBar({ onOpenCommand }: { onOpenCommand: () => void }) {
     : "--";
 
   return (
+    <>
+    {dataDialogOpen && <DataSourceDialog onClose={() => setDataDialogOpen(false)} />}
     <header className="bg-bg-elev-1 border-b border-border h-12 flex items-center px-4 gap-3 shrink-0">
       <div className="flex items-center gap-3">
         <span className="text-[16px] font-semibold tracking-tight">
@@ -59,10 +66,30 @@ export function TopBar({ onOpenCommand }: { onOpenCommand: () => void }) {
           <span>{timeLabel} EST</span>
         </div>
 
+        <Button
+          variant="ghost"
+          size="icon"
+          aria-label="Add university data"
+          onClick={() => setDataDialogOpen(true)}
+          className="text-fg-muted hover:text-fg"
+        >
+          <PlusCircle size={16} />
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          aria-label="Toggle theme"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+        </Button>
+
         <Button variant="ghost" size="icon" aria-label="Menu">
           <MoreVertical size={16} />
         </Button>
       </div>
     </header>
+    </>
   );
 }

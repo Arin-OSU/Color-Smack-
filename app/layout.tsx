@@ -28,14 +28,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrains.variable} dark h-full antialiased`}
+      className={`${inter.variable} ${jetbrains.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full bg-bg text-fg font-sans">
         <ThemeProvider>
           <TooltipProvider>
             {children}
-            <Toaster position="bottom-right" richColors closeButton theme="dark" />
+            <Toaster position="bottom-right" richColors closeButton />
           </TooltipProvider>
         </ThemeProvider>
       </body>

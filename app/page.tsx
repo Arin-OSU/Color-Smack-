@@ -50,7 +50,7 @@ export default function Home() {
         await new Promise((r) => setTimeout(r, 18));
       }
 
-      for (const a of anomalies) {
+      for (const a of anomalies.slice(0, 5)) {
         addCard({
           target: "panel",
           turn_id,
@@ -79,7 +79,7 @@ export default function Home() {
         <LeftRail />
         <MainArea onSubmit={handleSubmit} />
       </div>
-      <StatusBar realtime="live" scrape="spec" claude="ok" latencyMs={412} />
+      <StatusBar realtime="live" scrape="ready" claude="ok" latencyMs={412} />
       <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} />
     </div>
   );
