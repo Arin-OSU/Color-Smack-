@@ -2,7 +2,6 @@
 import { Activity } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { AnomalyCard } from "./AnomalyCard";
-import { HERO_ANOMALIES } from "@/lib/fixtures/hero-anomalies";
 import { useBus } from "@/lib/directive-bus";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import type { Anomaly } from "@/lib/types";
@@ -10,15 +9,15 @@ import { useMemo } from "react";
 
 export function LeftRail() {
   const { latestCenter, dispatch } = useBus();
+  const anomalies = useBus((s) => s.anomalies) as Anomaly[];
   const activeId =
     (latestCenter?.view_type === "anomaly_detail" &&
       (latestCenter.data.anomaly_id as string)) ||
     null;
 
   const sorted = useMemo<Anomaly[]>(
-    () =>
-      [...HERO_ANOMALIES].sort((a, b) => b.cost_impact_usd - a.cost_impact_usd),
-    [],
+    () => [...anomalies].sort((a, b) => b.cost_impact_usd - a.cost_impact_usd),
+    [anomalies],
   );
 
   const open = sorted.filter((a) =>

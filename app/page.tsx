@@ -6,7 +6,7 @@ import { LeftRail } from "@/components/rail/LeftRail";
 import { MainArea } from "@/components/shell/MainArea";
 import { CommandPalette } from "@/components/shell/CommandPalette";
 import { useBus } from "@/lib/directive-bus";
-import { HERO_ANOMALIES } from "@/lib/fixtures/hero-anomalies";
+import type { Anomaly } from "@/lib/types";
 
 export default function Home() {
   const [cmdOpen, setCmdOpen] = useState(false);
@@ -15,6 +15,14 @@ export default function Home() {
   const addCard = useBus((s) => s.addCard);
   const finishTurn = useBus((s) => s.finishTurn);
   const setCenter = useBus((s) => s.setCenter);
+  const anomalies = useBus((s) => s.anomalies) as Anomaly[];
+
+  useEffect(() => {
+    fetch("/api/anomalies")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (data?.length) useBus.getState().setAnomalies(data); })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -29,18 +37,20 @@ export default function Home() {
 
   const handleSubmit = useCallback(
     async (text: string) => {
-      const turn_id = `mock-${Date.now()}`;
+      const turn_id = `turn-${Date.now()}`;
       startTurn(turn_id, text);
 
-      // Mock a streaming reply so the shell feels alive before the real /api/chat lands.
-      const reply =
-        "Here is what stands out across the last 24 hours. Three buildings are flagged; the top driver by cost is Lazenby Hall running a winter-break ghost load. Tap any card to open the detail view.";
+      const top = anomalies[0];
+      const reply = top
+        ? `Found ${anomalies.length} anomal${anomalies.length === 1 ? "y" : "ies"} in the meter data. Top by cost: ${top.building_name ?? `Building ${top.building_id}`} — ${top.utility.replace(/_/g, " ")} — $${top.cost_impact_usd.toFixed(0)} impact. Tap any card to open the detail view.`
+        : "Here is what stands out. Three buildings are flagged; the top driver by cost is Lazenby Hall running a winter-break ghost load. Tap any card to open the detail view.";
+
       for (let i = 0; i < reply.length; i += 6) {
         appendAssistantText(turn_id, reply.slice(i, i + 6));
         await new Promise((r) => setTimeout(r, 18));
       }
 
-      for (const a of HERO_ANOMALIES) {
+      for (const a of anomalies) {
         addCard({
           target: "panel",
           turn_id,
@@ -53,13 +63,13 @@ export default function Home() {
       setCenter({
         target: "center",
         view_type: "anomaly_list",
-        data: { anomaly_ids: HERO_ANOMALIES.map((a) => a.id) },
-        config: { title: "Overnight anomalies · Jan 27, 2026" },
+        data: { anomaly_ids: anomalies.map((a) => a.id) },
+        config: { title: `${anomalies.length} anomalies detected` },
       });
 
       finishTurn(turn_id);
     },
-    [startTurn, appendAssistantText, addCard, setCenter, finishTurn],
+    [startTurn, appendAssistantText, addCard, setCenter, finishTurn, anomalies],
   );
 
   return (

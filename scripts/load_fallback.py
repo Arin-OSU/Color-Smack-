@@ -1,31 +1,27 @@
 """
-scripts/load_fallback.py — Load CampusSense fallback CSVs into parquet layout.
+scripts/load_fallback.py — ingest CSVs from morimori00/anarchy_20260221_application
+into the same parquet layout that scrape.py produces.
 
-Used when scrape.py writes FALLBACK_REQUIRED to data/raw/summary.json.
+Pipeline:
+  1. Clone repo with git-lfs  -> data/fallback/repo/   (skip with --skip-download)
+  2. building_metadata.csv    -> data/raw/buildings_from_api.json
+  3. meter-data-*.csv         -> data/raw/meters_from_api.json
+                              -> data/raw/readings/utility=<u>/building=<b>/readings.parquet
+  4. weather-*.csv            -> data/raw/weather.parquet
+  5. summary.json, init.sql
 
-Expects three files in data/fallback/ (pipe or tab separated, sniff with
-pandas.read_csv(sep=None, engine='python')):
-  meter-data-oct-2025.txt      -- long-format meter readings
-  building_metadata.txt        -- building list (ids, names, sqft, lat/lon)
-  weather-sept-oct-2025.txt    -- fallback hourly weather
-
-Produces the same layout scrape.py would produce:
-  data/raw/buildings_from_api.json
-  data/raw/meters_from_api.json
-  data/raw/readings/utility=<u>/building=<b>/readings.parquet
-  data/raw/weather.parquet   (Open-Meteo pulled fresh for the full window)
-  data/raw/init.sql
-  data/raw/summary.json
-
-Run:
+Usage:
     python scripts/load_fallback.py
+    python scripts/load_fallback.py --skip-download --data-dir data/fallback/repo/data
+    python scripts/load_fallback.py --skip-weather
 """
 from __future__ import annotations
 
+import argparse
 import json
-import os
+import subprocess
 import sys
-import time
+from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -39,219 +35,397 @@ except ImportError:
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
-import requests
 from tqdm import tqdm
+
+# ---------- Paths ----------
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw"
-READINGS = RAW / "readings"
-FALLBACK = ROOT / "data" / "fallback"
+FALLBACK_REPO = ROOT / "data" / "fallback" / "repo"
+READINGS_DIR = RAW / "readings"
+SUMMARY_PATH = RAW / "summary.json"
 
-START = os.getenv("SCRAPE_START", "2025-05-01")
-END = os.getenv("SCRAPE_END", "2026-04-17")
-OPEN_METEO_URL = os.getenv("OPEN_METEO_ARCHIVE_URL", "https://archive-api.open-meteo.com/v1/archive")
-OSU_LAT = float(os.getenv("OSU_LAT", "40.0795"))
-OSU_LON = float(os.getenv("OSU_LON", "-83.0732"))
+REPO_URL = "https://github.com/morimori00/anarchy_20260221_application.git"
+
+# ---------- Constants ----------
 
 UTILITY_NORMALIZE = {
-    "electric": "electricity", "electricity": "electricity", "elec": "electricity",
-    "natural_gas": "natural_gas", "naturalgas": "natural_gas", "gas": "natural_gas",
+    "electric": "electricity",
+    "electricity": "electricity",
+    "elec": "electricity",
+    "natural_gas": "natural_gas",
+    "naturalgas": "natural_gas",
+    "gas": "natural_gas",
     "steam": "steam",
-    "heating_hot_water": "heating_hot_water", "hhw": "heating_hot_water", "hotwater": "heating_hot_water",
-    "chilled_water": "chilled_water", "chw": "chilled_water", "chilledwater": "chilled_water",
-    "domestic_water": "domestic_water", "water": "domestic_water", "dw": "domestic_water",
+    "steamrate": "steam_rate",
+    "steam_rate": "steam_rate",
+    "heating_hot_water": "heating_hot_water",
+    "hhw": "heating_hot_water",
+    "hotwater": "heating_hot_water",
+    "heat": "heating_hot_water",
+    "chilled_water": "chilled_water",
+    "chw": "chilled_water",
+    "chilledwater": "chilled_water",
+    "cooling": "chilled_water",
+    "domestic_water": "domestic_water",
+    "water": "domestic_water",
+    "dw": "domestic_water",
 }
 
-
-def normalize_utility(raw: object) -> str:
-    k = str(raw).strip().lower().replace(" ", "_").replace("-", "_")
-    return UTILITY_NORMALIZE.get(k, k)
-
-
-def sniff_read(path: Path) -> pd.DataFrame:
-    print(f"[fallback] Reading {path.name} ...")
-    df = pd.read_csv(path, sep=None, engine="python", on_bad_lines="skip", low_memory=False)
-    df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
-    return df
-
-
-def load_buildings() -> pd.DataFrame:
-    src = FALLBACK / "building_metadata.txt"
-    if not src.exists():
-        raise FileNotFoundError(f"missing {src}. Drop the CSV here first.")
-    df = sniff_read(src)
-
-    def pick(names: list[str]) -> str | None:
-        for n in names:
-            if n in df.columns:
-                return n
-        return None
-
-    id_col = pick(["buildingnumber", "buildingid", "bldgkey", "building_id", "id", "bldgnum"])
-    name_col = pick(["buildingname", "name", "building_name"])
-    campus_col = pick(["campus", "location"])
-    area_col = pick(["gross_area", "grossarea", "sqft", "area", "grosssquarefeet"])
-    lat_col = pick(["latitude", "lat"])
-    lon_col = pick(["longitude", "lon", "lng"])
-    type_col = pick(["building_type", "type", "buildingtype"])
-    floors_col = pick(["floors_above_ground", "floors", "numfloors"])
-    date_col = pick(["construction_date", "yearbuilt", "yearopened", "year_built"])
-
-    out = pd.DataFrame({
-        "buildingnumber": pd.to_numeric(df[id_col], errors="coerce").astype("Int64") if id_col else pd.NA,
-        "buildingname": df[name_col].astype(str) if name_col else None,
-        "campus": df[campus_col].astype(str) if campus_col else "Columbus",
-        "gross_area": pd.to_numeric(df[area_col], errors="coerce").astype("Int64") if area_col else pd.NA,
-        "floors_above_ground": pd.to_numeric(df[floors_col], errors="coerce").astype("Int64") if floors_col else pd.NA,
-        "construction_date": df[date_col].astype(str) if date_col else None,
-        "latitude": pd.to_numeric(df[lat_col], errors="coerce") if lat_col else None,
-        "longitude": pd.to_numeric(df[lon_col], errors="coerce") if lon_col else None,
-        "building_type": df[type_col].astype(str) if type_col else None,
-        "status": "active",
-    })
-    out = out.dropna(subset=["buildingnumber"]).drop_duplicates("buildingnumber")
-    (RAW / "buildings_from_api.json").write_text(
-        out.to_json(orient="records", indent=2), encoding="utf-8"
-    )
-    print(f"[fallback] Wrote {len(out)} buildings")
-    return out
-
-
-def load_readings(buildings: pd.DataFrame) -> pd.DataFrame:
-    src = FALLBACK / "meter-data-oct-2025.txt"
-    if not src.exists():
-        raise FileNotFoundError(f"missing {src}. Drop the CSV here first.")
-    df = sniff_read(src)
-
-    def pick(names: list[str]) -> str | None:
-        for n in names:
-            if n in df.columns:
-                return n
-        return None
-
-    id_col = pick(["siteid", "buildingnumber", "bldgkey", "building_id", "buildingid"])
-    utility_col = pick(["utility", "utilitytype", "metertype", "type"])
-    time_col = pick(["reading_time", "readingtime", "timestamp", "time", "readingdatetime"])
-    value_col = pick(["readingvalue", "value", "consumption", "readingwindowmean"])
-
-    if not (id_col and utility_col and time_col and value_col):
-        raise RuntimeError(f"Could not find expected columns. Got: {list(df.columns)[:20]}")
-
-    print(f"[fallback] id={id_col} utility={utility_col} time={time_col} value={value_col}")
-
-    df["siteid"] = pd.to_numeric(df[id_col], errors="coerce").astype("Int64")
-    df["utility"] = df[utility_col].map(normalize_utility)
-    df["reading_time"] = pd.to_datetime(df[time_col], utc=True, errors="coerce")
-    df["readingvalue"] = pd.to_numeric(df[value_col], errors="coerce")
-    df = df.dropna(subset=["siteid", "utility", "reading_time"])
-
-    out = df[["siteid", "utility", "reading_time", "readingvalue"]]
-
-    pairs = out[["siteid", "utility"]].drop_duplicates()
-    print(f"[fallback] Writing {len(pairs)} parquet partitions from {len(out):,} rows ...")
-    for _, row in tqdm(list(pairs.iterrows())):
-        b, u = int(row["siteid"]), row["utility"]
-        sub = out[(out["siteid"] == b) & (out["utility"] == u)]
-        p = READINGS / f"utility={u}" / f"building={b}" / "readings.parquet"
-        p.parent.mkdir(parents=True, exist_ok=True)
-        pq.write_table(pa.Table.from_pandas(sub, preserve_index=False), p, compression="zstd")
-    return pairs
-
-
-def write_meters(pairs: pd.DataFrame) -> None:
-    meters = [
-        {"building_id": int(r["siteid"]), "utility": r["utility"], "unit": "kWh", "status": "active"}
-        for _, r in pairs.iterrows()
-    ]
-    (RAW / "meters_from_api.json").write_text(json.dumps(meters, indent=2), encoding="utf-8")
-    print(f"[fallback] Wrote {len(meters)} meters")
-
-
-def pull_weather() -> None:
-    out = RAW / "weather.parquet"
-    if out.exists():
-        print("[fallback] weather.parquet already exists; skipping")
-        return
-    hourly = ",".join([
-        "temperature_2m", "relative_humidity_2m", "dew_point_2m",
-        "shortwave_radiation", "direct_radiation", "diffuse_radiation",
-        "wind_speed_10m", "wind_speed_100m", "wind_direction_10m", "wind_direction_100m",
-        "cloud_cover", "apparent_temperature", "precipitation",
-    ])
-    params = {
-        "latitude": OSU_LAT, "longitude": OSU_LON,
-        "start_date": START, "end_date": END,
-        "hourly": hourly,
-        "temperature_unit": "fahrenheit", "wind_speed_unit": "mph",
-        "precipitation_unit": "inch", "timezone": "UTC",
-    }
-    for attempt, delay in enumerate([0, 5, 10, 20]):
-        if attempt:
-            time.sleep(delay)
-        try:
-            r = requests.get(OPEN_METEO_URL, params=params, timeout=120)
-            r.raise_for_status()
-            hp = r.json()["hourly"]
-            df = pd.DataFrame(hp).rename(columns={"time": "reading_time"})
-            df["reading_time"] = pd.to_datetime(df["reading_time"], utc=True)
-            pq.write_table(pa.Table.from_pandas(df, preserve_index=False), out, compression="zstd")
-            print(f"[fallback] weather.parquet rows={len(df)}")
-            return
-        except Exception as e:
-            print(f"[fallback] weather attempt {attempt} failed: {e}")
-    print("[fallback] weather pull gave up")
-
-
-INIT_SQL = """CREATE OR REPLACE VIEW v_buildings AS
+INIT_SQL = """-- Generated by scripts/load_fallback.py. DuckDB views over parquet data.
+CREATE OR REPLACE VIEW v_buildings AS
 SELECT * FROM read_json_auto('data/raw/buildings_from_api.json');
+
 CREATE OR REPLACE VIEW v_readings AS
 SELECT * FROM read_parquet('data/raw/readings/**/readings.parquet', hive_partitioning=1);
+
 CREATE OR REPLACE VIEW v_weather AS
 SELECT * FROM read_parquet('data/raw/weather.parquet');
+
 CREATE OR REPLACE VIEW v_readings_with_meta AS
 SELECT r.*, b.buildingname, b.campus, b.gross_area, b.latitude, b.longitude,
        b.construction_date, b.building_type
-FROM v_readings r LEFT JOIN v_buildings b ON r.siteid = b.buildingnumber;
+FROM v_readings r
+LEFT JOIN v_buildings b ON r.siteid = b.buildingnumber;
+
 CREATE OR REPLACE VIEW v_readings_full AS
 SELECT rm.*, w.temperature_2m, w.relative_humidity_2m, w.dew_point_2m,
        w.shortwave_radiation, w.wind_speed_10m, w.cloud_cover,
        w.apparent_temperature, w.precipitation
 FROM v_readings_with_meta rm
-LEFT JOIN v_weather w ON date_trunc('hour', rm.reading_time) = w.reading_time;
+LEFT JOIN v_weather w
+  ON date_trunc('hour', rm.reading_time) = w.reading_time;
 """
 
+# ---------- Helpers ----------
 
-def main() -> int:
+def ensure_dirs() -> None:
     RAW.mkdir(parents=True, exist_ok=True)
-    READINGS.mkdir(parents=True, exist_ok=True)
-    FALLBACK.mkdir(parents=True, exist_ok=True)
-    (RAW / "init.sql").write_text(INIT_SQL, encoding="utf-8")
+    READINGS_DIR.mkdir(parents=True, exist_ok=True)
+    FALLBACK_REPO.parent.mkdir(parents=True, exist_ok=True)
 
-    buildings = load_buildings()
-    pairs = load_readings(buildings)
-    write_meters(pairs)
-    pull_weather()
 
-    total = 0
-    bytes_ = 0
-    for p in READINGS.rglob("*.parquet"):
-        bytes_ += p.stat().st_size
+def normalize_utility(raw: object) -> str:
+    if raw is None:
+        return "unknown"
+    k = str(raw).strip().lower().replace(" ", "_").replace("-", "_")
+    return UTILITY_NORMALIZE.get(k, k)
+
+
+def safe_int(v) -> int | None:
+    try:
+        s = str(v).strip()
+        return int(float(s)) if s not in ("", "nan", "None", "none") else None
+    except (ValueError, TypeError):
+        return None
+
+
+def safe_float(v) -> float | None:
+    try:
+        s = str(v).strip()
+        return float(s) if s not in ("", "nan", "None", "none") else None
+    except (ValueError, TypeError):
+        return None
+
+
+def find_col(df: pd.DataFrame, candidates: list[str]) -> str | None:
+    """Case-insensitive column lookup, ignoring underscores/hyphens."""
+    lower_map = {c.lower().replace("_", "").replace("-", ""): c for c in df.columns}
+    for cand in candidates:
+        key = cand.lower().replace("_", "").replace("-", "")
+        if key in lower_map:
+            return lower_map[key]
+    return None
+
+
+# ---------- Step 1: download ----------
+
+def step_download() -> Path:
+    data_dir = FALLBACK_REPO / "data"
+    if data_dir.exists() and any(data_dir.glob("*.csv")):
+        print(f"[fallback] Repo already cloned at {FALLBACK_REPO}")
+        return data_dir
+
+    print(f"[fallback] Cloning {REPO_URL} ...")
+    try:
+        subprocess.run(
+            ["git", "clone", "--depth=1", REPO_URL, str(FALLBACK_REPO)],
+            check=True,
+        )
+    except FileNotFoundError:
+        print("[fallback] ERROR: git not found. Install Git and re-run.")
+        sys.exit(1)
+    except subprocess.CalledProcessError as e:
+        print(f"[fallback] Clone failed: {e}")
+        sys.exit(1)
+
+    print("[fallback] Pulling LFS objects (large CSVs — may take several minutes) ...")
+    try:
+        subprocess.run(["git", "lfs", "pull"], cwd=str(FALLBACK_REPO), check=True)
+    except FileNotFoundError:
+        print(
+            "\n[fallback] ERROR: git-lfs not found.\n"
+            "  1. Install from https://git-lfs.com/\n"
+            "  2. Run:  git lfs install\n"
+            f" 3. Run:  cd {FALLBACK_REPO} && git lfs pull\n"
+            "  4. Re-run this script with --skip-download\n"
+        )
+        sys.exit(1)
+    except subprocess.CalledProcessError as e:
+        print(f"[fallback] git lfs pull failed: {e}")
+        sys.exit(1)
+
+    print("[fallback] Clone + LFS pull complete.")
+    return data_dir
+
+
+# ---------- Step 2: buildings ----------
+
+def step_buildings(data_dir: Path) -> list[dict]:
+    out_path = RAW / "buildings_from_api.json"
+    if out_path.exists():
+        print(f"[fallback] Reusing cached {out_path.name}")
+        return json.loads(out_path.read_text(encoding="utf-8"))
+
+    csv_path = data_dir / "building_metadata.csv"
+    if not csv_path.exists():
+        candidates = list(data_dir.rglob("building_metadata.csv"))
+        if not candidates:
+            print(f"[fallback] WARNING: building_metadata.csv not found in {data_dir}")
+            return []
+        csv_path = candidates[0]
+
+    print(f"[fallback] Loading buildings from {csv_path.name} ...")
+    df = pd.read_csv(csv_path, dtype=str)
+    df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
+
+    buildings = []
+    for _, row in df.iterrows():
+        bnum = safe_int(
+            row.get("buildingnumber")
+            or row.get("building_number")
+            or row.get("bldgkey")
+            or row.get("simscode")
+        )
+        if bnum is None:
+            continue
+        buildings.append({
+            "buildingnumber": bnum,
+            "buildingname": str(row.get("buildingname") or row.get("building_name") or ""),
+            "campus": str(row.get("campusname") or row.get("campus") or "Columbus"),
+            "gross_area": safe_int(row.get("grossarea") or row.get("gross_area") or row.get("squarefeet")),
+            "floors_above_ground": safe_int(row.get("floorsaboveground") or row.get("floors_above_ground")),
+            "construction_date": str(row.get("constructiondate") or row.get("construction_date") or ""),
+            "latitude": safe_float(row.get("latitude") or row.get("lat")),
+            "longitude": safe_float(row.get("longitude") or row.get("lon") or row.get("lng")),
+            "building_type": str(row.get("buildingtype") or row.get("building_type") or ""),
+            "status": "active",
+        })
+
+    out_path.write_text(json.dumps(buildings, indent=2, default=str), encoding="utf-8")
+    print(f"[fallback] Saved {len(buildings)} buildings -> {out_path.name}")
+    return buildings
+
+
+# ---------- Step 3: meters + readings ----------
+
+def find_meter_csvs(data_dir: Path) -> list[Path]:
+    paths = sorted(data_dir.glob("meter-data-*.csv"))
+    if not paths:
+        paths = sorted(data_dir.rglob("meter-data-*.csv"))
+    print(f"[fallback] Found meter CSV(s): {[p.name for p in paths]}")
+    return paths
+
+
+def step_meters_and_readings(data_dir: Path) -> list[dict]:
+    meters_path = RAW / "meters_from_api.json"
+    meter_csvs = find_meter_csvs(data_dir)
+    if not meter_csvs:
+        print("[fallback] No meter CSVs found — skipping readings.")
+        return []
+
+    # Accumulate all rows per (utility, building_id) before writing parquet.
+    # ~1.5 M rows x 4 cols ≈ 50 MB in memory — fine to hold all at once.
+    bucket: dict[tuple[str, int], list] = defaultdict(list)
+    meters_seen: set[tuple[str, int]] = set()
+
+    for csv_path in meter_csvs:
+        size_mb = csv_path.stat().st_size / 1e6
+        print(f"[fallback] Reading {csv_path.name} ({size_mb:.0f} MB) ...")
+
+        with open(csv_path, "rb") as f:
+            total_lines = sum(1 for _ in f) - 1
+
+        chunk_iter = pd.read_csv(csv_path, chunksize=50_000, dtype=str)
+        pbar = tqdm(
+            chunk_iter,
+            total=max(1, total_lines // 50_000),
+            desc=f"  {csv_path.name}",
+            unit="chunk",
+        )
+
+        warned = False
+        for chunk in pbar:
+            chunk.columns = [c.strip().lower().replace(" ", "_") for c in chunk.columns]
+
+            site_col = find_col(chunk, ["simscode", "buildingnumber", "building_number", "siteid", "bldgkey"])
+            util_col = find_col(chunk, ["utility", "utilitytype", "utility_type"])
+            time_col = find_col(chunk, ["readingtime", "reading_time", "timestamp", "datetime", "time"])
+            val_col  = find_col(chunk, ["readingvalue", "reading_value", "value", "consumption"])
+
+            if not all([site_col, util_col, time_col, val_col]):
+                if not warned:
+                    print(f"[fallback] WARNING: unrecognized columns {list(chunk.columns)} — skipping")
+                    warned = True
+                continue
+
+            chunk = chunk[[site_col, util_col, time_col, val_col]].copy()
+            chunk.columns = ["siteid", "utility", "reading_time", "readingvalue"]
+
+            chunk["utility"]      = chunk["utility"].apply(normalize_utility)
+            chunk["readingvalue"] = pd.to_numeric(chunk["readingvalue"], errors="coerce")
+            chunk["reading_time"] = pd.to_datetime(chunk["reading_time"], errors="coerce", utc=True)
+            chunk["siteid"]       = pd.to_numeric(chunk["siteid"], errors="coerce")
+            chunk = chunk.dropna(subset=["reading_time", "siteid"])
+            chunk["siteid"] = chunk["siteid"].astype(int)
+
+            for (sid, util), grp in chunk.groupby(["siteid", "utility"]):
+                key = (util, int(sid))
+                meters_seen.add(key)
+                bucket[key].extend(grp[["siteid", "utility", "reading_time", "readingvalue"]].to_dict("records"))
+
+    print(f"[fallback] Writing {len(bucket)} parquet partition(s) ...")
+    for (util, sid), rows in tqdm(bucket.items(), desc="  writing parquet", unit="partition"):
+        df = pd.DataFrame(rows)
+        df["reading_time"] = pd.to_datetime(df["reading_time"], utc=True)
+        df = df.drop_duplicates(subset=["siteid", "utility", "reading_time"])
+        df = df.sort_values("reading_time")
+
+        p = READINGS_DIR / f"utility={util}" / f"building={sid}" / "readings.parquet"
+        p.parent.mkdir(parents=True, exist_ok=True)
+
+        if p.exists():
+            try:
+                prior = pd.read_parquet(p)
+                df = pd.concat([prior, df], ignore_index=True)
+                df = df.drop_duplicates(subset=["siteid", "utility", "reading_time"])
+                df = df.sort_values("reading_time")
+            except Exception:
+                pass
+
+        pq.write_table(pa.Table.from_pandas(df, preserve_index=False), p, compression="zstd")
+
+    meters = [
+        {"building_id": sid, "utility": util, "unit": "kWh", "status": "active"}
+        for util, sid in sorted(meters_seen)
+    ]
+    meters_path.write_text(json.dumps(meters, indent=2, default=str), encoding="utf-8")
+    print(f"[fallback] Saved {len(meters)} meters -> {meters_path.name}")
+    return meters
+
+
+# ---------- Step 4: weather ----------
+
+def step_weather(data_dir: Path) -> None:
+    out_path = RAW / "weather.parquet"
+    if out_path.exists():
         try:
-            total += pq.read_metadata(p).num_rows
+            nrows = pq.read_metadata(out_path).num_rows
+            if nrows >= 100:
+                print(f"[fallback] Reusing cached weather.parquet ({nrows} rows)")
+                return
         except Exception:
             pass
-    (RAW / "summary.json").write_text(
-        json.dumps({
-            "finished_at": datetime.now(timezone.utc).isoformat(),
-            "source": "fallback",
-            "buildings": int(len(buildings)),
-            "meters": int(len(pairs)),
-            "readings": int(total),
-            "bytes_on_disk": int(bytes_),
-            "date_range": {"start": START, "end": END},
-        }, indent=2), encoding="utf-8"
+
+    candidates = sorted(data_dir.rglob("weather-*.csv"))
+    if not candidates:
+        print("[fallback] No weather CSV found — skipping.")
+        return
+
+    csv_path = candidates[0]
+    print(f"[fallback] Loading weather from {csv_path.name} ...")
+    df = pd.read_csv(csv_path)
+    df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
+
+    for col in ("date", "time", "datetime", "timestamp", "readingtime", "reading_time"):
+        if col in df.columns:
+            df.rename(columns={col: "reading_time"}, inplace=True)
+            break
+
+    df["reading_time"] = pd.to_datetime(df["reading_time"], errors="coerce", utc=True)
+    df = df.dropna(subset=["reading_time"])
+
+    pq.write_table(pa.Table.from_pandas(df, preserve_index=False), out_path, compression="zstd")
+    print(f"[fallback] Saved weather.parquet ({len(df)} rows)")
+
+
+# ---------- Summary ----------
+
+def write_summary(buildings: list, meters: list) -> None:
+    readings = 0
+    bytes_on_disk = 0
+    if READINGS_DIR.exists():
+        for p in READINGS_DIR.rglob("*.parquet"):
+            bytes_on_disk += p.stat().st_size
+            try:
+                readings += pq.read_metadata(p).num_rows
+            except Exception:
+                pass
+
+    summary = {
+        "source": "fallback_csv",
+        "repo": REPO_URL,
+        "finished_at": datetime.now(timezone.utc).isoformat(),
+        "buildings": len(buildings),
+        "meters": len(meters),
+        "readings": readings,
+        "bytes_on_disk": bytes_on_disk,
+    }
+    SUMMARY_PATH.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    print(
+        f"[fallback] Done — buildings={len(buildings)}, meters={len(meters)}, "
+        f"readings={readings:,}, disk={bytes_on_disk / 1e6:.1f} MB"
     )
-    print("[fallback] Done.")
+
+
+# ---------- Main ----------
+
+def main() -> int:
+    ap = argparse.ArgumentParser(
+        description="Load fallback CSV data from morimori00/anarchy_20260221_application."
+    )
+    ap.add_argument(
+        "--data-dir", type=Path,
+        help="Path to the /data folder inside the cloned repo (skips auto-download)",
+    )
+    ap.add_argument(
+        "--skip-download", action="store_true",
+        help="Don't clone/pull — assumes repo is already at data/fallback/repo/",
+    )
+    ap.add_argument("--skip-weather", action="store_true", help="Skip weather CSV step")
+    args = ap.parse_args()
+
+    ensure_dirs()
+    (RAW / "init.sql").write_text(INIT_SQL, encoding="utf-8")
+
+    if args.data_dir:
+        data_dir = Path(args.data_dir).resolve()
+    elif args.skip_download:
+        data_dir = FALLBACK_REPO / "data"
+        if not data_dir.exists():
+            print(f"[fallback] {data_dir} not found. Run without --skip-download first.")
+            return 1
+    else:
+        data_dir = step_download()
+
+    buildings = step_buildings(data_dir)
+    meters    = step_meters_and_readings(data_dir)
+
+    if not args.skip_weather:
+        step_weather(data_dir)
+
+    write_summary(buildings, meters)
+    print("\n[fallback] Data ready. Query with DuckDB via data/raw/init.sql")
     return 0
 
 

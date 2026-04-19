@@ -1,11 +1,13 @@
 "use client";
 import { create } from "zustand";
 import type {
+  Anomaly,
   CenterDirective,
   PanelCard,
   ChatMessage,
   Directive,
 } from "@/lib/types";
+import { HERO_ANOMALIES } from "@/lib/fixtures/hero-anomalies";
 
 // Lightweight global event stream for chat + directives.
 // Avoids prop drilling between composer, panel, and stage.
@@ -19,6 +21,8 @@ type TurnGroup = {
 };
 
 interface BusState {
+  anomalies: Anomaly[];
+  setAnomalies: (a: Anomaly[]) => void;
   latestCenter: CenterDirective | null;
   turns: TurnGroup[];
   setCenter: (d: CenterDirective | null) => void;
@@ -31,6 +35,8 @@ interface BusState {
 }
 
 export const useBus = create<BusState>((set, get) => ({
+  anomalies: HERO_ANOMALIES,
+  setAnomalies: (a) => set({ anomalies: a }),
   latestCenter: null,
   turns: [],
   setCenter: (d) => set({ latestCenter: d }),

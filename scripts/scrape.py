@@ -28,6 +28,7 @@ import argparse
 import json
 import os
 import random
+import re
 import signal
 import sys
 import time
@@ -155,6 +156,51 @@ def backoff_sleep(attempt: int, retry_after: float | None = None) -> None:
     time.sleep(min(base + jitter, 480))
 
 
+def candidate_wsdl_urls() -> list[str]:
+    urls = [WSDL_URL]
+    if WSDL_URL.startswith("https://"):
+        urls.append("http://" + WSDL_URL[len("https://"):])
+    elif WSDL_URL.startswith("http://"):
+        urls.append("https://" + WSDL_URL[len("http://"):])
+    deduped: list[str] = []
+    for url in urls:
+        if url not in deduped:
+            deduped.append(url)
+    return deduped
+
+
+def fetch_wsdl(url: str) -> bytes:
+    r = requests.get(url, headers=HEADERS, timeout=60)
+    r.raise_for_status()
+    return r.content
+
+
+def detect_public_ui_api_hint() -> str | None:
+    """Detect whether the public site now points to non-SOAP APIs."""
+    try:
+        home = requests.get("https://energydashboard.osu.edu/", headers=HEADERS, timeout=20)
+        if home.status_code != 200:
+            return None
+        scripts = re.findall(r'<script[^>]+src="([^"]+)"', home.text)
+        for src in scripts:
+            if "index-" not in src:
+                continue
+            bundle_url = src if src.startswith("http") else f"https://energydashboard.osu.edu{src}"
+            bundle = requests.get(bundle_url, headers=HEADERS, timeout=25)
+            if bundle.status_code != 200:
+                continue
+            txt = bundle.text
+            if "connfusion.azure-api.net" in txt and "Ocp-Apim-Subscription-Key" in txt:
+                return (
+                    "Public site is reachable but SOAP WSDL is not exposed. "
+                    "Frontend currently uses Azure APIM endpoints under connfusion.azure-api.net "
+                    "with subscription-key auth."
+                )
+    except Exception:
+        return None
+    return None
+
+
 # ---------- Zeep client + SOAP helpers ----------
 
 def build_client() -> Client:
@@ -162,19 +208,30 @@ def build_client() -> Client:
     session.headers.update(HEADERS)
     transport = Transport(session=session, timeout=60, operation_timeout=120)
     settings = Settings(strict=False, xml_huge_tree=True, raw_response=False)
-    print(f"[scrape] Loading WSDL from {WSDL_URL} ...")
-    client = Client(wsdl=WSDL_URL, transport=transport, settings=settings)
-    return client
+    errors: list[str] = []
+    for candidate in candidate_wsdl_urls():
+        try:
+            print(f"[scrape] Loading WSDL from {candidate} ...")
+            client = Client(wsdl=candidate, transport=transport, settings=settings)
+            return client
+        except Exception as e:
+            errors.append(f"{candidate}: {e}")
+            continue
+    hint = detect_public_ui_api_hint()
+    if hint:
+        errors.append(hint)
+    raise RuntimeError(" ; ".join(errors))
 
 
 def save_wsdl() -> None:
-    try:
-        r = requests.get(WSDL_URL, headers=HEADERS, timeout=60)
-        r.raise_for_status()
-        (RAW / "wsdl.xml").write_bytes(r.content)
-        print(f"[scrape] Saved WSDL ({len(r.content)} bytes)")
-    except Exception as e:
-        print(f"[scrape] WSDL raw download failed: {e}")
+    for candidate in candidate_wsdl_urls():
+        try:
+            wsdl_bytes = fetch_wsdl(candidate)
+            (RAW / "wsdl.xml").write_bytes(wsdl_bytes)
+            print(f"[scrape] Saved WSDL ({len(wsdl_bytes)} bytes) from {candidate}")
+            return
+        except Exception as e:
+            print(f"[scrape] WSDL raw download failed for {candidate}: {e}")
 
 
 def list_operations(client: Client) -> list[str]:

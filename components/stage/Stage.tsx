@@ -2,7 +2,7 @@
 import { useBus } from "@/lib/directive-bus";
 import { MapView } from "./MapView";
 import { stripEmDashes } from "@/lib/text";
-import { findHeroAnomaly } from "@/lib/fixtures/hero-anomalies";
+import type { Anomaly } from "@/lib/types";
 import { SeverityBadge } from "@/components/ui/severity-badge";
 import { Num } from "@/components/ui/num";
 import {
@@ -34,7 +34,8 @@ export function Stage() {
 
 function AnomalyDetailPlaceholder({ data }: { data: Record<string, unknown> }) {
   const id = data.anomaly_id as string;
-  const a = findHeroAnomaly(id);
+  const anomalies = useBus((s) => s.anomalies) as Anomaly[];
+  const a = anomalies.find((x) => x.id === id);
   if (!a) {
     return <GenericStagePlaceholder label="anomaly_detail" config={{ title: id }} />;
   }
