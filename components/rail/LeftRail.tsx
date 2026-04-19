@@ -3,7 +3,6 @@ import { Activity } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { AnomalyCard } from "./AnomalyCard";
 import { useBus } from "@/lib/directive-bus";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import type { Anomaly } from "@/lib/types";
 import { useMemo } from "react";
 
@@ -48,7 +47,7 @@ export function LeftRail() {
           by cost
         </span>
       </div>
-      <ScrollArea className="flex-1">
+      <div className="flex-1 min-h-0 overflow-y-auto">
         <div className="flex flex-col gap-1 p-2">
           {sorted.length === 0 ? (
             <div className="text-center py-12 text-fg-muted text-sm">
@@ -66,7 +65,7 @@ export function LeftRail() {
             ))
           )}
         </div>
-      </ScrollArea>
+      </div>
     </aside>
   );
 }

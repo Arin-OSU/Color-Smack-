@@ -66,13 +66,19 @@ export function MapView({
       .catch(() => {});
   }, []);
 
-  // Init Leaflet once on mount
+  // Init Leaflet once on mount. Handles React Strict Mode double-invocation
+  // with dynamic imports via a cancelled flag + explicit _leaflet_id cleanup —
+  // map.remove() doesn't always clear the container's leaflet id.
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
+    let cancelled = false;
 
-    // Dynamic import to avoid SSR issues
     import("leaflet").then((L) => {
-      // Fix default icon paths that break with webpack
+      if (cancelled || !mapContainerRef.current) return;
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      delete (mapContainerRef.current as any)._leaflet_id;
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       delete (L.Icon.Default.prototype as any)._getIconUrl;
       L.Icon.Default.mergeOptions({
@@ -81,10 +87,10 @@ export function MapView({
         shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
       });
 
-      const map = L.map(mapContainerRef.current!, {
+      const map = L.map(mapContainerRef.current, {
         center: OSU_CENTER,
         zoom: 15,
-        zoomControl: false, // we add custom buttons
+        zoomControl: false,
         attributionControl: true,
       });
 
@@ -98,9 +104,14 @@ export function MapView({
     });
 
     return () => {
+      cancelled = true;
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
+      }
+      if (mapContainerRef.current) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        delete (mapContainerRef.current as any)._leaflet_id;
       }
     };
   }, []);

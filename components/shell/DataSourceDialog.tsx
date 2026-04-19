@@ -13,6 +13,7 @@ export function DataSourceDialog({ onClose }: { onClose: () => void }) {
   const [info, setInfo] = useState("");
   const [drag, setDrag] = useState(false);
   const setExternalData = useBus((s) => s.setExternalData);
+  const setCenter = useBus((s) => s.setCenter);
 
   function process(file: File) {
     if (!file.name.endsWith(".csv")) {
@@ -30,6 +31,16 @@ export function DataSourceDialog({ onClose }: { onClose: () => void }) {
         setInfo(`Found ${buildings.length} buildings, ${readings.length} readings. Running anomaly detection…`);
         const anomalies = detectAnomalies(buildings, readings);
         setExternalData(buildings, anomalies);
+        // Ensure the stage shows the map so the user immediately sees the
+        // uploaded buildings. MapView's effect handles the fitBounds pan.
+        setCenter({
+          target: "center",
+          view_type: "map",
+          data: {},
+          config: {
+            title: `External campus · ${buildings.length} buildings${anomalies.length ? ` · ${anomalies.length} flagged` : ""}`,
+          },
+        });
         setStatus("done");
         setInfo(
           `Loaded ${buildings.length} buildings · ${anomalies.length} anomaly${anomalies.length !== 1 ? "ies" : ""} detected. Check the map.`
