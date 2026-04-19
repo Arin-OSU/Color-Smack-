@@ -72,7 +72,7 @@ export function LeftRail() {
           </span>
           <button
             onClick={() => setCollapsed(true)}
-            className="p-1 rounded hover:bg-bg-elev-2 text-fg-muted hover:text-fg transition-colors"
+            className="p-1 rounded bg-bg-elev-2 hover:bg-bg-elev-3 text-fg hover:text-fg transition-colors border border-border"
             title="Collapse inbox"
           >
             <ChevronLeft size={14} />

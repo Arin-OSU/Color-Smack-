@@ -73,11 +73,12 @@ export function MapView({
     if (!mapContainerRef.current || mapRef.current) return;
     let cancelled = false;
 
+    // Clear any stale Leaflet state synchronously before the async import
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    delete (mapContainerRef.current as any)._leaflet_id;
+
     import("leaflet").then((L) => {
       if (cancelled || !mapContainerRef.current) return;
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      delete (mapContainerRef.current as any)._leaflet_id;
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       delete (L.Icon.Default.prototype as any)._getIconUrl;

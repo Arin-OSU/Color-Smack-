@@ -38,7 +38,7 @@ export function ResponsePanel() {
         <div className="h-10 flex items-center justify-end px-2 border-b border-border shrink-0">
           <button
             onClick={() => setCollapsed(true)}
-            className="p-1 rounded hover:bg-bg-elev-2 text-fg-muted hover:text-fg transition-colors"
+            className="p-1 rounded bg-bg-elev-2 hover:bg-bg-elev-3 text-fg hover:text-fg transition-colors border border-border"
             title="Collapse chat panel"
           >
             <ChevronRight size={14} />
@@ -55,7 +55,7 @@ export function ResponsePanel() {
         <span className="text-xs font-medium text-fg-muted">Chat</span>
         <button
           onClick={() => setCollapsed(true)}
-          className="p-1 rounded hover:bg-bg-elev-2 text-fg-muted hover:text-fg transition-colors"
+          className="p-1 rounded bg-bg-elev-2 hover:bg-bg-elev-3 text-fg hover:text-fg transition-colors border border-border"
           title="Collapse chat panel"
         >
           <ChevronRight size={14} />
