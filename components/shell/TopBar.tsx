@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Search, MoreVertical, Sun, Moon, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFrozenClock } from "@/hooks/useFrozenClock";
@@ -14,6 +14,8 @@ export function TopBar({ onOpenCommand }: { onOpenCommand: () => void }) {
   const { theme, setTheme } = useTheme();
   const [dataDialogOpen, setDataDialogOpen] = useState(false);
   const [buildingCount, setBuildingCount] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     fetch("/api/buildings")
@@ -90,7 +92,7 @@ export function TopBar({ onOpenCommand }: { onOpenCommand: () => void }) {
           aria-label="Toggle theme"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         >
-          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          {mounted ? (theme === "dark" ? <Sun size={16} /> : <Moon size={16} />) : <Sun size={16} />}
         </Button>
 
         <Button variant="ghost" size="icon" aria-label="Menu">

@@ -78,7 +78,7 @@ export function MapView({
     delete (mapContainerRef.current as any)._leaflet_id;
 
     import("leaflet").then((L) => {
-      if (cancelled || !mapContainerRef.current) return;
+      if (cancelled || !mapContainerRef.current || mapRef.current) return;
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -87,6 +87,9 @@ export function MapView({
         iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
         shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
       });
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      delete (mapContainerRef.current as any)._leaflet_id;
 
       const map = L.map(mapContainerRef.current, {
         center: OSU_CENTER,
