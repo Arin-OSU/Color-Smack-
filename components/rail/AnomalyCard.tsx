@@ -94,7 +94,7 @@ export function AnomalyCard({
           <Num value={humanizeDuration(anomaly.duration_minutes)} />
         </div>
         <div className="text-[10px] text-fg-subtle">
-          {humanizeRange(anomaly.first_reading_time, anomaly.last_reading_time)}
+          Live · {humanizeRange(anomaly.first_reading_time, anomaly.last_reading_time)}
         </div>
       </div>
     </button>
