@@ -34,32 +34,30 @@ export function ResponsePanel() {
 
   if (turns.length === 0) {
     return (
-      <aside className="w-[380px] shrink-0 bg-bg border-l border-border flex flex-col overflow-hidden">
-        <div className="h-10 flex items-center justify-end px-2 border-b border-border shrink-0">
-          <button
-            onClick={() => setCollapsed(true)}
-            className="p-1 rounded bg-bg-elev-2 hover:bg-bg-elev-3 text-fg hover:text-fg transition-colors border border-border"
-            title="Collapse chat panel"
-          >
-            <ChevronRight size={14} />
-          </button>
-        </div>
+      <aside className="w-[380px] shrink-0 bg-bg border-l border-border flex flex-col overflow-hidden relative">
+        <button
+          onClick={() => setCollapsed(true)}
+          title="Collapse chat panel"
+          className="absolute top-1/2 -left-3 -translate-y-1/2 z-10 flex items-center justify-center w-6 h-10 rounded-l-md bg-accent text-white shadow-md hover:bg-accent/80 transition-colors"
+        >
+          <ChevronRight size={14} />
+        </button>
         <EmptyState />
       </aside>
     );
   }
 
   return (
-    <aside className="w-[380px] shrink-0 bg-bg border-l border-border flex flex-col overflow-hidden">
-      <div className="h-10 flex items-center justify-between px-3 border-b border-border shrink-0">
+    <aside className="w-[380px] shrink-0 bg-bg border-l border-border flex flex-col overflow-hidden relative">
+      <button
+        onClick={() => setCollapsed(true)}
+        title="Collapse chat panel"
+        className="absolute top-1/2 -left-3 -translate-y-1/2 z-10 flex items-center justify-center w-6 h-10 rounded-l-md bg-accent text-white shadow-md hover:bg-accent/80 transition-colors"
+      >
+        <ChevronRight size={14} />
+      </button>
+      <div className="h-10 flex items-center px-3 border-b border-border shrink-0">
         <span className="text-xs font-medium text-fg-muted">Chat</span>
-        <button
-          onClick={() => setCollapsed(true)}
-          className="p-1 rounded bg-bg-elev-2 hover:bg-bg-elev-3 text-fg hover:text-fg transition-colors border border-border"
-          title="Collapse chat panel"
-        >
-          <ChevronRight size={14} />
-        </button>
       </div>
       <div className="flex-1 overflow-y-auto min-h-0">
         <div className="flex flex-col gap-5 px-4 py-5">

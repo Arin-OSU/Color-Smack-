@@ -57,7 +57,7 @@ export function LeftRail() {
   }
 
   return (
-    <aside className="w-72 shrink-0 bg-bg border-r border-border flex flex-col">
+    <aside className="w-72 shrink-0 bg-bg border-r border-border flex flex-col relative">
       <div className="h-10 flex items-center px-3 border-b border-border justify-between shrink-0">
         <div className="flex items-center gap-2">
           <Activity size={14} className="text-fg-muted" />
@@ -70,15 +70,16 @@ export function LeftRail() {
           <span className="text-[10px] uppercase tracking-wider text-fg-subtle">
             by cost
           </span>
-          <button
-            onClick={() => setCollapsed(true)}
-            className="p-1 rounded bg-bg-elev-2 hover:bg-bg-elev-3 text-fg hover:text-fg transition-colors border border-border"
-            title="Collapse inbox"
-          >
-            <ChevronLeft size={14} />
-          </button>
         </div>
       </div>
+      {/* Collapse tab on the right edge */}
+      <button
+        onClick={() => setCollapsed(true)}
+        title="Collapse inbox"
+        className="absolute top-1/2 -right-3 -translate-y-1/2 z-10 flex items-center justify-center w-6 h-10 rounded-r-md bg-accent text-white shadow-md hover:bg-accent/80 transition-colors"
+      >
+        <ChevronLeft size={14} />
+      </button>
       <div className="flex-1 min-h-0 overflow-y-auto">
         <div className="flex flex-col gap-1 p-2">
           {sorted.length === 0 ? (
