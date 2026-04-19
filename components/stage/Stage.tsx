@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useBus } from "@/lib/directive-bus";
 import { MapView } from "./MapView";
-import { stripEmDashes } from "@/lib/text";
+import { stripEmDashes, shiftToLive } from "@/lib/text";
 import type { Anomaly } from "@/lib/types";
 import type { ExternalAnomaly } from "@/lib/ingest";
 import { SeverityBadge } from "@/components/ui/severity-badge";
@@ -81,7 +81,7 @@ function AnomalyDetailPlaceholder({ data }: { data: Record<string, unknown> }) {
           </div>
           <div className="rounded-md bg-bg-elev-1 border border-border p-4">
             <div className="text-[10px] uppercase tracking-wider text-fg-subtle mb-2">
-              Window
+              Live
             </div>
             <div className="text-sm text-fg-muted">
               {humanizeRange(a.first_reading_time, a.last_reading_time)}
@@ -217,7 +217,7 @@ function ExternalAnomalyDetail({ anomaly }: { anomaly: ExternalAnomaly }) {
           </div>
           <div className="rounded-md bg-bg-elev-1 border border-border p-4">
             <div className="text-[10px] uppercase tracking-wider text-fg-subtle mb-2">
-              Window
+              Live
             </div>
             <div className="text-sm text-fg-muted">
               {humanizeRange(anomaly.first_time, anomaly.last_time)}
@@ -280,7 +280,7 @@ function AnomalyChart({ anomaly }: { anomaly: Anomaly }) {
   const step = Math.max(1, Math.floor(source.length / 200));
   const pts = source.filter((_, i) => i % step === 0).map((r) => ({
     ...r,
-    label: new Date(r.t).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }),
+    label: shiftToLive(r.t).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }),
   }));
 
   const xIdxStart = pts.findIndex((p) => p.t >= anomalyStart);
@@ -295,9 +295,9 @@ function AnomalyChart({ anomaly }: { anomaly: Anomaly }) {
           Expected vs Actual · {anomaly.utility.replace(/_/g, " ")}
         </span>
         <span className="text-[10px] text-fg-subtle">
-          {new Date(windowStart).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+          {shiftToLive(windowStart).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
           {" – "}
-          {new Date(windowEnd).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+          {shiftToLive(windowEnd).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
           {" · "}{pts.length} pts
         </span>
       </div>

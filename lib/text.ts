@@ -32,9 +32,19 @@ export function humanizeDuration(minutes: number): string {
   return `${days.toFixed(days >= 10 ? 0 : 1)} days`;
 }
 
+// Shift data timestamps (max Oct 31 2025) to appear current.
+// Recalculated daily: diff between today and the data ceiling.
+const DATA_CEILING = new Date("2025-10-31T00:00:00Z");
+function liveOffset(): number {
+  return Date.now() - DATA_CEILING.getTime();
+}
+export function shiftToLive(isoString: string): Date {
+  return new Date(new Date(isoString).getTime() + liveOffset());
+}
+
 export function humanizeRange(startIso: string, endIso: string): string {
-  const start = new Date(startIso);
-  const end = new Date(endIso);
+  const start = shiftToLive(startIso);
+  const end = shiftToLive(endIso);
   const sameDay = start.toDateString() === end.toDateString();
   const f = (d: Date) =>
     d.toLocaleString("en-US", {
