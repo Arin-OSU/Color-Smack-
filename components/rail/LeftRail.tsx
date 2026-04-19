@@ -1,15 +1,16 @@
 "use client";
-import { Activity } from "lucide-react";
+import { Activity, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { AnomalyCard } from "./AnomalyCard";
 import { useBus } from "@/lib/directive-bus";
 import type { Anomaly } from "@/lib/types";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 export function LeftRail() {
   const latestCenter = useBus((s) => s.latestCenter);
   const dispatch = useBus((s) => s.dispatch);
   const anomalies = useBus((s) => s.anomalies) as Anomaly[];
+  const [collapsed, setCollapsed] = useState(false);
   const activeId =
     (latestCenter?.view_type === "anomaly_detail" &&
       (latestCenter.data.anomaly_id as string)) ||
@@ -33,6 +34,28 @@ export function LeftRail() {
     });
   }
 
+  if (collapsed) {
+    return (
+      <aside className="w-10 shrink-0 bg-bg border-r border-border flex flex-col items-center py-2 gap-2">
+        <button
+          onClick={() => setCollapsed(false)}
+          className="p-1.5 rounded hover:bg-bg-elev-2 text-fg-muted hover:text-fg transition-colors"
+          title="Expand anomaly inbox"
+        >
+          <ChevronRight size={16} />
+        </button>
+        <div className="writing-mode-vertical text-[10px] text-fg-subtle tracking-wider uppercase mt-2 select-none" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
+          Inbox
+        </div>
+        {open > 0 && (
+          <Badge variant="secondary" className="font-mono tabular-nums text-[10px] px-1">
+            {open}
+          </Badge>
+        )}
+      </aside>
+    );
+  }
+
   return (
     <aside className="w-72 shrink-0 bg-bg border-r border-border flex flex-col">
       <div className="h-10 flex items-center px-3 border-b border-border justify-between shrink-0">
@@ -43,9 +66,18 @@ export function LeftRail() {
             {open}
           </Badge>
         </div>
-        <span className="text-[10px] uppercase tracking-wider text-fg-subtle">
-          by cost
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] uppercase tracking-wider text-fg-subtle">
+            by cost
+          </span>
+          <button
+            onClick={() => setCollapsed(true)}
+            className="p-1 rounded hover:bg-bg-elev-2 text-fg-muted hover:text-fg transition-colors"
+            title="Collapse inbox"
+          >
+            <ChevronLeft size={14} />
+          </button>
+        </div>
       </div>
       <div className="flex-1 min-h-0 overflow-y-auto">
         <div className="flex flex-col gap-1 p-2">
