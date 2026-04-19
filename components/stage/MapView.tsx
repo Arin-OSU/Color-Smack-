@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Map as MapIcon, ZoomIn, ZoomOut, Locate } from "lucide-react";
+import { Map as MapIcon, ZoomIn, ZoomOut, Locate, X } from "lucide-react";
 import { useBus } from "@/lib/directive-bus";
 import type { Anomaly } from "@/lib/types";
 import type { ExternalBuilding, ExternalAnomaly } from "@/lib/ingest";
@@ -22,6 +22,7 @@ const OSU_BOUNDS = {
 };
 
 export function MapView({
+  data,
   config,
 }: {
   data?: Record<string, unknown>;
@@ -36,6 +37,7 @@ export function MapView({
   const dispatch = useBus((s) => s.dispatch);
   const externalBuildings = useBus((s) => s.externalBuildings);
   const externalAnomalies = useBus((s) => s.externalAnomalies);
+  const setExternalData = useBus((s) => s.setExternalData);
   const title = (config?.title as string) ?? "OSU Columbus · campus map";
 
   // Build anomaly index keyed by building_id (highest severity wins)
@@ -233,6 +235,18 @@ export function MapView({
             </div>`;
 
         circle.bindPopup(popupContent, { maxWidth: 260 });
+
+        if (anomaly) {
+          circle.on("click", () => {
+            dispatch({
+              target: "center",
+              view_type: "anomaly_detail",
+              data: { anomaly_id: anomaly.id, external: true },
+              config: { title: b.building_name },
+            });
+          });
+        }
+
         extMarkersRef.current.push(circle);
         latlngs.push([b.latitude, b.longitude]);
       }
@@ -245,6 +259,13 @@ export function MapView({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, externalBuildings, externalAnomalies]);
 
+  const focusLat = typeof data?.focus_lat === "number" ? data.focus_lat : null;
+  const focusLon = typeof data?.focus_lon === "number" ? data.focus_lon : null;
+  useEffect(() => {
+    if (!ready || !mapRef.current || focusLat === null || focusLon === null) return;
+    mapRef.current.setView([focusLat, focusLon], 17);
+  }, [ready, focusLat, focusLon]);
+
   const zoomIn = useCallback(() => mapRef.current?.zoomIn(), []);
   const zoomOut = useCallback(() => mapRef.current?.zoomOut(), []);
   const resetView = useCallback(
@@ -252,6 +273,10 @@ export function MapView({
     []
   );
   const goToOSU = useCallback(() => mapRef.current?.setView(OSU_CENTER, 15), []);
+  const clearExternal = useCallback(() => {
+    setExternalData([], []);
+    mapRef.current?.setView(OSU_CENTER, 15);
+  }, [setExternalData]);
 
   const flaggedCount = anomalyByBuilding.size;
   const extFlaggedCount = new Set(externalAnomalies.map((a) => a.building_id)).size;
@@ -273,9 +298,16 @@ export function MapView({
         {externalBuildings.length > 0 && (
           <>
             <span className="text-fg-subtle text-xs">·</span>
-            <span className="text-xs text-accent font-medium border border-accent/30 rounded px-1.5 py-0.5">
+            <span className="text-xs text-accent font-medium border border-accent/30 rounded px-1.5 py-0.5 inline-flex items-center gap-1">
               +{externalBuildings.length} ext
               {extFlaggedCount > 0 && ` · ${extFlaggedCount} flagged`}
+              <button
+                onClick={clearExternal}
+                aria-label="Clear external data"
+                className="ml-1 -mr-0.5 rounded hover:bg-accent/10 text-accent/70 hover:text-accent transition-colors"
+              >
+                <X size={11} />
+              </button>
             </span>
           </>
         )}

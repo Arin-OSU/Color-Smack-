@@ -83,6 +83,12 @@ export function CommandPalette({
                 key={a.id}
                 value={`${a.building_name} ${a.utility} ${a.severity} external anomaly`}
                 onSelect={() => {
+                  dispatch({
+                    target: "center",
+                    view_type: "anomaly_detail",
+                    data: { anomaly_id: a.id, external: true },
+                    config: { title: a.building_name },
+                  });
                   onOpenChange(false);
                 }}
               >
@@ -102,6 +108,12 @@ export function CommandPalette({
                 key={b.buildingnumber}
                 value={`${b.buildingname} ${b.campus ?? ""} building`}
                 onSelect={() => {
+                  dispatch({
+                    target: "center",
+                    view_type: "map",
+                    data: { focus_lat: b.latitude, focus_lon: b.longitude },
+                    config: { title: b.buildingname },
+                  });
                   onOpenChange(false);
                 }}
               >

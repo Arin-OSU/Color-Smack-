@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search, MoreVertical, Sun, Moon, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFrozenClock } from "@/hooks/useFrozenClock";
@@ -13,6 +13,14 @@ export function TopBar({ onOpenCommand }: { onOpenCommand: () => void }) {
   const frozen = isFrozenMode();
   const { theme, setTheme } = useTheme();
   const [dataDialogOpen, setDataDialogOpen] = useState(false);
+  const [buildingCount, setBuildingCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("/api/buildings")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data: unknown[]) => setBuildingCount(Array.isArray(data) ? data.length : 0))
+      .catch(() => {});
+  }, []);
 
   const timeLabel = now
     ? now.toLocaleString("en-US", {
@@ -34,8 +42,8 @@ export function TopBar({ onOpenCommand }: { onOpenCommand: () => void }) {
           CampusSense
         </span>
         <span className="text-fg-muted text-sm">· OSU</span>
-        <span className="text-fg-subtle text-xs border border-border rounded px-2 py-0.5">
-          Columbus main · 485 buildings
+        <span className="text-fg-subtle text-xs border border-border rounded px-2 py-0.5 tabular-nums">
+          Columbus main · {buildingCount ?? "—"} buildings
         </span>
       </div>
 
