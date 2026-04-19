@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useFrozenClock } from "@/hooks/useFrozenClock";
 import { isFrozenMode } from "@/lib/clock";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import { DataSourceDialog } from "@/components/shell/DataSourceDialog";
 
 export function TopBar({ onOpenCommand }: { onOpenCommand: () => void }) {

@@ -22,6 +22,20 @@ export const metadata: Metadata = {
   description: "Claude-powered energy analyst for Ohio State.",
 };
 
+// Runs synchronously in <head> before React hydrates — prevents a flash of
+// wrong theme on first paint. Kept tiny and self-contained.
+const themeInitScript = `
+try {
+  var t = localStorage.getItem('cs-theme');
+  if (t !== 'dark' && t !== 'light') t = 'dark';
+  var r = document.documentElement;
+  r.classList.remove('dark', 'light');
+  r.classList.add(t);
+  r.dataset.theme = t;
+  r.style.colorScheme = t;
+} catch (e) {}
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -31,6 +45,9 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrains.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-full bg-bg text-fg font-sans">
         <ThemeProvider>
           <TooltipProvider>
